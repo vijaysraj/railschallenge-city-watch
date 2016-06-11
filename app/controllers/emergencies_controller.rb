@@ -2,18 +2,26 @@ class EmergenciesController < ApplicationController
 
   rescue_from ActionController::UnpermittedParameters, with: :catch_unpermitted_params
 
+  def new
+    render json: { message: 'page not found' }, status: 404
+  end
+
   def create
     @emergency = Emergency.new(emergency_params)
     if @emergency.save
       render json: { emergency: @emergency }, status: 201
     else
-      render json: { message: @emergency.errors }, :status: 422
+      render json: { message: @emergency.errors }, status: 422
     end
   end
 
   def index
     @emergencies = Emergency.all
     render json: {emergencies: @emergencies}
+  end
+
+  def edit
+    render json: { message: 'page not found' }, status: 404
   end
 
   def update
@@ -23,6 +31,10 @@ class EmergenciesController < ApplicationController
     else
       render json: { message: @emergency.errors }, status: 422
     end
+  end
+
+  def destroy
+    render json: { message: 'page not found' },status: 404
   end
 
   private
