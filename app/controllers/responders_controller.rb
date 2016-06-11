@@ -1,4 +1,8 @@
-class ResponderController < ApplicationController
+class RespondersController < ApplicationController
+
+  def new
+    render json: { message: 'page not found' }, status: 404
+  end
 
   def create
     @responder = Responder.new(responder_params)  
@@ -7,6 +11,14 @@ class ResponderController < ApplicationController
     else
       render json: { message: @responder.errors }, status: 201
     end
+  end
+
+  def edit
+    render json: { message: 'page not found' }, status: 404
+  end
+
+  def destroy
+    render json: { message: 'page not found' }, status: 404
   end
 
   private
