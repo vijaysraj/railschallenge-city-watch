@@ -3,9 +3,9 @@ class ResponderController < ApplicationController
   def create
     @responder = Responder.new(responder_params)  
     if responder.save
-      render json: {responder: @responder}, status: 201
+      render json: { responder: @responder }, status: 201
     else
-      render json: {message: @responder.errors}, status: 201
+      render json: { message: @responder.errors }, status: 201
     end
   end
 
