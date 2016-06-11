@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   patch '/emergencies/:code' => 'emergencies#update'
   get '/emergencies/:code' => 'emergencies#show'
 
-  patch '/responders/:name' => 'responders#update'
-  get '/responders/:name' => 'responders#show'
+  patch '/responders/:name  ' => 'responders#update'
+  get '/responders/:name  ' => 'responders#show'
 
 end

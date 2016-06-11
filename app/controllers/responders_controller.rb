@@ -17,10 +17,10 @@ class RespondersController < ApplicationController
   def index
     if params[:show] == "capacity"
       @capacity = Responder.capacity
-      render :json => { :capacity => @capacity }
+      render :json => { capacity: @capacity }
     else
       @responders = Responder.all
-      render :json => { :responders => @responders }
+      render :json => { responders: @responders }
     end
   end
 
