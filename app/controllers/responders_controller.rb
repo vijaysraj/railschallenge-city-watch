@@ -15,6 +15,11 @@ class RespondersController < ApplicationController
     end
   end
 
+  def index
+    @responders = Responder.all
+    render json: {responders: @responders}
+  end
+
   def edit
     render json: { message: 'page not found' }, status: 404
   end
