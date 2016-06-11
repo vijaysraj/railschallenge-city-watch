@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   resources :responders, except: [:show, :update]
 
   patch '/emergencies/:code' => 'emergencies#update'
+  get '/emergencies/:code' => 'emergencies#show'
 
 end

@@ -33,6 +33,15 @@ class EmergenciesController < ApplicationController
     end
   end
 
+  def show
+    @emergency = Emergency.find_by_code(params[:code])
+    if @emergency.present?
+      render json: { emergency: @emergency }
+    else
+      render json: { message: "emergency not found" }, status: 404
+    end
+  end
+
   def destroy
     render json: { message: 'page not found' },status: 404
   end
