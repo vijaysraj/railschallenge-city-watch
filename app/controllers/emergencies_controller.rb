@@ -1,5 +1,4 @@
 class EmergenciesController < ApplicationController
-
   rescue_from ActionController::UnpermittedParameters, with: :catch_unpermitted_params
 
   def new
@@ -17,7 +16,7 @@ class EmergenciesController < ApplicationController
 
   def index
     @emergencies = Emergency.all
-    render json: {emergencies: @emergencies}
+    render json: { emergencies: @emergencies }
   end
 
   def edit
@@ -59,5 +58,4 @@ class EmergenciesController < ApplicationController
   def catch_unpermitted_params
     render :json => { message: $ERROR_INFO.message }.to_json, :status => 422
   end
-
 end

@@ -1,14 +1,13 @@
 class Responder < ActiveRecord::Base
-
   self.inheritance_column = nil
 
   EXCLUDED_JSON_ATTRIBUTES = [:id, :created_at, :updated_at]
 
   RESPONDER_TYPES = %w(Fire Medical Police)
 
-  validates :type, :presence => true
-  validates :name, :presence => true, uniqueness: {case_sensitive: false}
-  validates :capacity, :presence => true, inclusion: { in: 1..5 }
+  validates :type, presence: true
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
+  validates :capacity, presence: true, inclusion: { in: 1..5 }
 
 
   def as_json(options={})
@@ -33,7 +32,6 @@ class Responder < ActiveRecord::Base
     capacities << responders.sum(:capacity)
     capacities << (responders.where(emergency_code: nil)).sum(:capacity)
     capacities << (responders.where(on_duty: true)).sum(:capacity)
-    capacities << (responders.where(on_duty:true, emergency_code: nil)).sum(:capacity)
+    capacities << (responders.where(on_duty: true, emergency_code: nil)).sum(:capacity)
   end 
-
 end
