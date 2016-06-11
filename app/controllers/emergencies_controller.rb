@@ -11,6 +11,11 @@ class EmergenciesController < ApplicationController
     end
   end
 
+  def index
+    @emergencies = Emergency.all
+    render json: {emergencies: @emergencies}
+  end
+
   private
 
   def emergency_params
