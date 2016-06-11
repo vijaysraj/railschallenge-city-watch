@@ -16,8 +16,13 @@ class RespondersController < ApplicationController
   end
 
   def index
-    @responders = Responder.all
-    render json: {responders: @responders}
+    if params[:show] == "capacity"
+      @capacity = Responder.capacity
+      render :json => {:capacity => @capacity}
+    else
+      @responders = Responder.all
+      render :json => {:responders => @responders}
+    end
   end
 
   def edit
@@ -42,22 +47,22 @@ class RespondersController < ApplicationController
     end
   end
 
-  def destroy
-    render json: { message: 'page not found' }, status: 404
-  end
+def destroy
+  render json: { message: 'page not found' }, status: 404
+end
 
-  private
+private
 
-  def responder_params
-    params.require(:responder).permit(:type, :name, :capacity)
-  end
+def responder_params
+  params.require(:responder).permit(:type, :name, :capacity)
+end
 
-  def responder_update_params
-    params.require(:responder).permit(:on_duty)
-  end
+def responder_update_params
+  params.require(:responder).permit(:on_duty)
+end
 
-  def catch_unpermitted_params
-    render :json => { message: $ERROR_INFO.message }.to_json, :status => 422
-  end
+def catch_unpermitted_params
+  render :json => { message: $ERROR_INFO.message }.to_json, :status => 422
+end
 
 end
